@@ -12,12 +12,12 @@ import 'package:guia_de_moteis/pages/widgets/suite_card.dart';
 import 'package:guia_de_moteis/pages/widgets/period_buttom.dart';
 import 'package:guia_de_moteis/pages/widgets/icon_wrap.dart';
 
-class MotelListPage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _MotelListPageState createState() => _MotelListPageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MotelListPageState extends State<MotelListPage> {
+class _HomePageState extends State<HomePage> {
   List<String> filtrosSelecionados = []; // Gerencia os filtros selecionados
 
   void handleFilterSelection(String filtro) {

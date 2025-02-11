@@ -6,7 +6,7 @@ import 'package:guia_de_moteis/blocs/motel_event.dart';
 import 'blocs/motel_bloc.dart';
 import 'repositories/motel_repository.dart';
 import 'services/api_service.dart';
-import 'pages/motel_list_page.dart';
+import 'pages/home_page.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       home: BlocProvider(
         create: (context) =>
             MotelBloc(MotelRepository(ApiService()))..add(LoadMotels()),
-        child: MotelListPage(),
+        child: HomePage(),
       ),
     );
   }

@@ -57,8 +57,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   color: Colors.white,
-                  fontSize: isSmallScreen ? 16 : 18, // Ajuste dinâmico
-                  decoration: TextDecoration.underline,
+                  fontSize: isSmallScreen ? 16 : 18,
                 ),
               ),
               const Icon(Icons.keyboard_arrow_down, color: Colors.white),

@@ -30,7 +30,7 @@ O projeto segue uma estrutura modular e organizada para facilitar a manutenção
 │   │   │-- periodo_model.dart
 │   │   │-- suite_model.dart
 │   │-- pages/                      # Telas do aplicativo
-│   │   │-- motel_list_page.dart
+│   │   │-- home_page.dart
 │   │   └── widgets/               # Componentes reutilizáveis
 │   │       │-- custom_appbar.dart
 │   │       │-- drawer.dart
