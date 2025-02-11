@@ -1,7 +1,7 @@
 # Guia de Motéis
 
 ## Sobre o Projeto
-O **Guia de Motéis** é um aplicativo desenvolvido em Flutter para ajudar usuários a encontrar motéis, visualizar detalhes e comparar opções. Ele utiliza o **BLoC pattern** para gerenciamento de estado e interação com a API.
+O **Guia de Motéis** é um aplicativo desenvolvido em Flutter para ajudar usuários a encontrar motéis, visualizar detalhes e comparar opções. Ele utiliza o **BLoC pattern** para gerenciamento de estado e interação com a API. Aplicativo desenvolvido de uma plataforma windows, configurações ios não estão estruturadas por falta de dispositivo.
 
 ## Tecnologias Utilizadas
 - **Flutter**: Framework para desenvolvimento cross-platform.
@@ -9,7 +9,7 @@ O **Guia de Motéis** é um aplicativo desenvolvido em Flutter para ajudar usuá
 - **BLoC (Business Logic Component)**: Para gerenciamento de estado.
 - **HTTP**: Para chamadas de API.
 - **SharedPreferences**: Para armazenamento local de preferências do usuário.
-- **Tailwind CSS**: Para estilização (se aplicável em versão web).
+
 
 ## Estrutura do Projeto
 O projeto segue uma estrutura modular e organizada para facilitar a manutenção:
