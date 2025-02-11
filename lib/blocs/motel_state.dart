@@ -10,7 +10,7 @@ class MotelLoading extends MotelState {}
 
 class MotelLoaded extends MotelState {
   final List<Motel> moteis;
-  final List<String> filtroSelecionado; // Adicionado aqui
+  final List<String> filtroSelecionado;
 
   MotelLoaded({
     required this.moteis,

@@ -12,11 +12,11 @@ class _CustomToggleButtonsState extends State<CustomToggleButtons> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    bool isSmallScreen = screenWidth < 400; // Detecta telas menores
+    bool isSmallScreen = screenWidth < 400;
 
     return Container(
       width: isSmallScreen ? screenWidth * 0.75 : 320,
-      height: 40, // Altura fixa para evitar distorções
+      height: 40, 
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 106, 17, 10),
         borderRadius: BorderRadius.circular(30),
@@ -25,7 +25,7 @@ class _CustomToggleButtonsState extends State<CustomToggleButtons> {
         children: [
           Row(
             children: [
-              // Botão "Ir Agora"
+
               Expanded(
                 child: GestureDetector(
                   onTap: () {
@@ -59,7 +59,7 @@ class _CustomToggleButtonsState extends State<CustomToggleButtons> {
                   ),
                 ),
               ),
-              // Botão "Ir Outro Dia"
+
               Expanded(
                 child: GestureDetector(
                   onTap: () {
@@ -95,14 +95,14 @@ class _CustomToggleButtonsState extends State<CustomToggleButtons> {
               ),
             ],
           ),
-          // Animação do botão selecionado
+
           AnimatedAlign(
             duration: const Duration(milliseconds: 250),
             curve: Curves.decelerate,
             alignment: isNowSelected ? Alignment.centerLeft : Alignment.centerRight,
             child: Container(
               width: isSmallScreen ? screenWidth * 0.35 : 160,
-              height: 40, // Ajustado para manter consistência
+              height: 40, 
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),

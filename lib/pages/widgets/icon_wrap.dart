@@ -3,9 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IconWrap extends StatelessWidget {
   final List<Map<String, String>> categoriaItens;
-  final String suiteNome; // Nome da suíte
-  final List<String> principaisItens; // Itens principais
-  final List<String> outrosItens; // Itens adicionais
+  final String suiteNome; 
+  final List<String> principaisItens; 
+  final List<String> outrosItens; 
 
   const IconWrap({
     required this.categoriaItens,
@@ -18,7 +18,7 @@ class IconWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final int maxIcons = 5; // Definir limite de 5 ícones
+    final int maxIcons = 5; 
 
     return Container(
       width: screenWidth,
@@ -39,7 +39,7 @@ class IconWrap extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Ícones limitados a 5
+
           Expanded(
             child: Wrap(
               alignment: WrapAlignment.center,
@@ -48,7 +48,7 @@ class IconWrap extends StatelessWidget {
               children: categoriaItens.take(maxIcons).map((item) {
                 return ClipOval(
                   child: Image.network(
-                    item['icone']!, // URL do ícone
+                    item['icone']!,
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
@@ -59,14 +59,14 @@ class IconWrap extends StatelessWidget {
               }).toList(),
             ),
           ),
-          // Se houver mais de 5 ícones, mostrar "Ver mais"
+
           if (categoriaItens.length > maxIcons)
             TextButton(
               onPressed: () {
                 showSuiteDetailsModal(
                   context: context,
                   suiteNome: suiteNome,
-                  principaisItens: categoriaItens, // Envia todos os itens
+                  principaisItens: categoriaItens, 
                   outrosItens: outrosItens,
                 );
               },
@@ -155,7 +155,7 @@ Future<void> showSuiteDetailsModal({
                 ),
               ),
               const Divider(),
-              // Exibir todos os itens no modal
+
               Wrap(
                 spacing: 12.0,
                 runSpacing: 12.0,
@@ -202,7 +202,7 @@ Future<void> showSuiteDetailsModal({
                 ),
               ),
               const Divider(),
-              // Exibindo os outros itens apenas como texto
+
               Text(
                 outrosItens.join(", "),
                 style: const TextStyle(

@@ -35,7 +35,7 @@ class _MotelGridCarouselState extends State<MotelGridCarousel> {
             autoPlayAnimationDuration: const Duration(milliseconds: 800),
           ),
           items: widget.itens.map((item) {
-            // Garantir que os dados existam ou fornecer valores padrão.
+
             final imagem = item['imagem'] ?? '';
             final titulo = item['titulo'] ?? 'Título indisponível';
             final localizacao = item['localizacao'] ?? 'Localização não informada';

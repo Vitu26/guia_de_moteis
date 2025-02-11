@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> filtrosSelecionados = []; // Gerencia os filtros selecionados
+  List<String> filtrosSelecionados = []; 
 
   void handleFilterSelection(String filtro) {
     if (filtro == 'filtros') {
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         isScrollControlled: true,
         backgroundColor: Colors.white,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero, // Sem bordas arredondadas
+          borderRadius: BorderRadius.zero, 
         ),
         builder: (BuildContext context) {
           double minPrice = 30;
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               }
 
               return Container(
-                height: MediaQuery.of(context).size.height * 0.9, // 90% da tela
+                height: MediaQuery.of(context).size.height * 0.9, 
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 24.0),
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Cabeçalho
+                   
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 20.0),
 
-                      // Faixa de Preço
+                     
                       const Text(
                         "Faixa de preço",
                         style: TextStyle(
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 44.0),
 
-                      // Períodos
+               
                       const Center(
                         child: Text(
                           "Períodos",
@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 44.0),
 
-                      // Toggles
+               
                       SwitchListTile(
                         activeColor: Colors.red,
                         title: const Text("Somente suítes com desconto"),
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 24.0),
 
-                      // Itens da Suíte
+              
                       const Center(
                         child: Text(
                           "Itens da suíte",
@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 24.0),
 
-                      // Botão de Verificar Disponibilidade
+         
                       Container(
                         width: double.infinity,
                         margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -355,17 +355,17 @@ class _HomePageState extends State<HomePage> {
         alignment: Alignment.bottomCenter,
         children: [
           Positioned(
-            bottom: 20, // Ajuste para alinhar na parte inferior
+            bottom: 20,
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                height: 40, // Altura do botão
+                height: 40, 
                 width: MediaQuery.of(context).size.width *
-                    0.2, // Largura proporcional à tela
+                    0.2, 
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius:
-                      BorderRadius.circular(20), // Bordas arredondadas
+                      BorderRadius.circular(20), 
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
@@ -637,7 +637,7 @@ class _HomePageState extends State<HomePage> {
                                                               })
                                                           .toList(),
                                                       suiteNome: suite
-                                                          .nome, // Nome da suíte
+                                                          .nome, 
                                                       principaisItens: suite
                                                           .itens
                                                           .map((item) =>

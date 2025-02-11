@@ -20,10 +20,10 @@ class PeriodoButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: screenWidth, // Define a largura como a largura da tela
-        height: 80.0, // Altura fixa do botão
+        width: screenWidth, 
+        height: 80.0, 
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-        margin: const EdgeInsets.only(bottom: 8.0), // Espaço entre botões
+        margin: const EdgeInsets.only(bottom: 8.0), 
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(4.0),

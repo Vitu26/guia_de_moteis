@@ -5,7 +5,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      widthFactor: 0.85, // Define a largura do Drawer
+      widthFactor: 0.85,
       child: Drawer(
         backgroundColor: Colors.grey[200],
         child: Column(
@@ -54,7 +54,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            // Lista de Opções com Ícone "angle_right"
+
             drawerOption(icon: Icons.login, text: "Login"),
             const SizedBox(height: 12), 
             drawerOption(icon: Icons.help_outline, text: "Ajuda"),
@@ -82,10 +82,10 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  /// Função para criar um item do Drawer
+
   Widget drawerOption({required IconData icon, required String text}) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Maior espaçamento vertical
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), 
       color: Colors.white,
       child: ListTile(
         leading: Icon(icon, color: Colors.black),
@@ -94,10 +94,10 @@ class CustomDrawer extends StatelessWidget {
           style: const TextStyle(
             color: Colors.black,
             fontFamily: 'Roboto',
-            fontSize: 15, // Reduz tamanho da fonte
+            fontSize: 15, 
           ),
         ),
-        trailing: const Icon(FontAwesomeIcons.angleRight, color: Colors.grey), // Ícone no final
+        trailing: const Icon(FontAwesomeIcons.angleRight, color: Colors.grey), 
         onTap: () {
           // Ação ao tocar
         },

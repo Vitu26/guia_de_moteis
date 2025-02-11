@@ -15,12 +15,12 @@ class FilterBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50, // Altura do container de filtros
+      height: 50,
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.5),
       child: Row(
         children: [
-          // Botão "Filtros" com contador
+
           GestureDetector(
             onTap: () => onFilterSelected('filtros'),
             child: Stack(
@@ -63,7 +63,7 @@ class FilterBar extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Contador de filtros selecionados
+
                 if (filtroSelecionado.isNotEmpty)
                   Positioned(
                     top: -5,
@@ -84,14 +84,14 @@ class FilterBar extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 10), // Espaço entre o botão "Filtros" e os demais filtros
-          // Outros botões de filtros
+          const SizedBox(width: 10),
+
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: filtros.length - 1, // Excluímos o botão "Filtros"
+              itemCount: filtros.length - 1, 
               itemBuilder: (context, index) {
-                final filtro = filtros[index + 1]; // Pulamos o botão "Filtros"
+                final filtro = filtros[index + 1];
                 return GestureDetector(
                   onTap: () => onFilterSelected(filtro['filtro']),
                   child: Container(

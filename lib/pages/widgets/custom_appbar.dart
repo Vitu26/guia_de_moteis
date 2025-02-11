@@ -6,7 +6,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final bool isSmallScreen = screenWidth < 400; // Detecta telas pequenas
+    final bool isSmallScreen = screenWidth < 400;
 
     return AppBar(
       backgroundColor: const Color.fromARGB(255, 160, 24, 15),
@@ -29,18 +29,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               });
             },
           ),
-          // Toggle de datas (ajustável para telas menores)
+
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: CustomToggleButtons(),
             ),
           ),
-          // Ícone de pesquisa
+
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {
-              // Ação para pesquisa
+
             },
           ),
         ],
