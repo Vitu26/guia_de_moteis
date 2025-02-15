@@ -1,3 +1,6 @@
+[Veja a demonstração do app](assets/guia_de_moteis.mp4)
+
+
 # Guia de Motéis
 
 ## Sobre o Projeto
@@ -8,7 +11,7 @@ O **Guia de Motéis** é um aplicativo desenvolvido em Flutter para ajudar usuá
 - **Dart**: Linguagem de programação.
 - **BLoC (Business Logic Component)**: Para gerenciamento de estado.
 - **HTTP**: Para chamadas de API.
-- **SharedPreferences**: Para armazenamento local de preferências do usuário.
+
 
 
 ## Estrutura do Projeto
@@ -35,6 +38,7 @@ O projeto segue uma estrutura modular e organizada para facilitar a manutenção
 │   │       │-- custom_appbar.dart
 │   │       │-- drawer.dart
 │   │       │-- filter_bar.dart
+│   │       │-- filter_modal.dart
 │   │       │-- icon_wrap.dart
 │   │       │-- motel_card.dart
 │   │       │-- motel_grid.dart
@@ -75,6 +79,9 @@ O projeto segue uma estrutura modular e organizada para facilitar a manutenção
 - Visualização de suítes e períodos de disponibilidade.
 - Armazenamento de preferências do usuário.
 
+
+[Veja a demonstração do aplicativo no Google Drive](https://drive.google.com/file/d/1Bj3q2IAKRPgE_IcCncuE2uzG5bWukeXx/view?usp=sharing
+o link é esse ai)
 
 
 

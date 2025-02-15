@@ -3,9 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IconWrap extends StatelessWidget {
   final List<Map<String, String>> categoriaItens;
-  final String suiteNome; 
-  final List<String> principaisItens; 
-  final List<String> outrosItens; 
+  final String suiteNome;
+  final List<String> principaisItens;
+  final List<String> outrosItens;
 
   const IconWrap({
     required this.categoriaItens,
@@ -18,7 +18,7 @@ class IconWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final int maxIcons = 5; 
+    final int maxIcons = 5;
 
     return Container(
       width: screenWidth,
@@ -39,7 +39,6 @@ class IconWrap extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
           Expanded(
             child: Wrap(
               alignment: WrapAlignment.center,
@@ -59,47 +58,56 @@ class IconWrap extends StatelessWidget {
               }).toList(),
             ),
           ),
-
           if (categoriaItens.length > maxIcons)
-            TextButton(
-              onPressed: () {
-                showSuiteDetailsModal(
-                  context: context,
-                  suiteNome: suiteNome,
-                  principaisItens: categoriaItens, 
-                  outrosItens: outrosItens,
-                );
-              },
-              child: Row(
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Text(
-                        "Ver",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+            Container(
+              margin: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
+              child: TextButton(
+                onPressed: () {
+                  showSuiteDetailsModal(
+                    context: context,
+                    suiteNome: suiteNome,
+                    principaisItens: categoriaItens,
+                    outrosItens: outrosItens,
+                  );
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero, // Remove espaçamentos extras
+                  minimumSize:
+                      Size(50, 40), // Mantém tamanho alinhado com os ícones
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: Row(
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Text(
+                          "Ver",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "mais",
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 12.0,
-                          color: Colors.grey,
+                        Text(
+                          "mais",
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 12.0,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Icon(
-                    FontAwesomeIcons.angleDown,
-                    size: 12.0,
-                    color: Colors.grey,
-                  ),
-                ],
+                      ],
+                    ),
+                    const Icon(
+                      FontAwesomeIcons.angleDown,
+                      size: 12.0,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
               ),
             ),
         ],
@@ -115,104 +123,109 @@ Future<void> showSuiteDetailsModal({
   required List<String> outrosItens,
 }) async {
   showModalBottomSheet(
+    backgroundColor: Colors.white,
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
     enableDrag: false,
     builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            suiteNome.toUpperCase(),
-            style: const TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      return Container(
+        height: MediaQuery.of(context).size.height,
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false, 
+            backgroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+            title: Row(
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    FontAwesomeIcons.angleDown,
+                    color: Colors.grey,
+                    size: 18.0,
+                  ),
+                  onPressed: () => Navigator.pop(context), 
+                ),
+              ],
             ),
           ),
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(FontAwesomeIcons.angleDown),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-          child: ListView(
-            children: [
-              const Divider(),
-              const Center(
-                child: Text(
-                  "Principais Itens",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+          body: Container(
+            color: Colors.white,
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+            child: ListView(
+              children: [
+                const Divider(),
+                const Center(
+                  child: Text(
+                    "Principais Itens",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-              ),
-              const Divider(),
-
-              Wrap(
-                spacing: 12.0,
-                runSpacing: 12.0,
-                alignment: WrapAlignment.center,
-                children: principaisItens.map((item) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ClipOval(
-                        child: Image.network(
-                          item['icone'] ?? '',
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Icon(Icons.image_not_supported, size: 40),
+                const Divider(),
+                Wrap(
+                  spacing: 12.0,
+                  runSpacing: 12.0,
+                  alignment: WrapAlignment.center,
+                  children: principaisItens.map((item) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ClipOval(
+                          child: Image.network(
+                            item['icone'] ?? '',
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.image_not_supported, size: 40),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4.0),
-                      Text(
-                        item['nome'] ?? '',
-                        style: const TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.grey,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w600,
+                        const SizedBox(height: 4.0),
+                        Text(
+                          item['nome'] ?? '',
+                          style: const TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 30.0),
-              const Divider(),
-              const Center(
-                child: Text(
-                  "Tem também",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                      ],
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 30.0),
+                const Divider(),
+                const Center(
+                  child: Text(
+                    "Tem também",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-              ),
-              const Divider(),
-
-              Text(
-                outrosItens.join(", "),
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.grey,
-                  height: 1.5,
-                  fontFamily: 'Roboto',
+                const Divider(),
+                Text(
+                  outrosItens.join(", "),
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.grey,
+                    height: 1.5,
+                    fontFamily: 'Roboto',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

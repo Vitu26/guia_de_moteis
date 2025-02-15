@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:guia_de_moteis/blocs/motel_bloc.dart';
 import 'package:guia_de_moteis/blocs/motel_event.dart';
 import 'package:guia_de_moteis/blocs/motel_state.dart';
+import 'package:guia_de_moteis/controller/home_controller.dart';
 import 'package:guia_de_moteis/pages/widgets/custom_appbar.dart';
 import 'package:guia_de_moteis/pages/widgets/drawer.dart' as customDrawer;
 import 'package:guia_de_moteis/pages/widgets/motel_grid_carousel.dart';
@@ -18,335 +19,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> filtrosSelecionados = []; 
-
-  void handleFilterSelection(String filtro) {
-    if (filtro == 'filtros') {
-      showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        backgroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero, 
-        ),
-        builder: (BuildContext context) {
-          double minPrice = 30;
-          double maxPrice = 2030;
-
-          return StatefulBuilder(
-            builder: (context, setState) {
-              bool hasFilters = filtrosSelecionados.isNotEmpty;
-
-              void limparFiltros() {
-                setState(() {
-                  filtrosSelecionados.clear();
-                  minPrice = 30;
-                  maxPrice = 2030;
-                });
-              }
-
-              return Container(
-                height: MediaQuery.of(context).size.height * 0.9, 
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 24.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                   
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: const Icon(FontAwesomeIcons.angleDown,
-                                color: Colors.grey),
-                            onPressed: () => Navigator.pop(context),
-                          ),
-                          const Expanded(
-                            child: Center(
-                              child: Text(
-                                "Filtros",
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Roboto'),
-                              ),
-                            ),
-                          ),
-                          if (hasFilters)
-                            TextButton(
-                              onPressed: limparFiltros,
-                              child: const Text(
-                                'Limpar',
-                                style: TextStyle(
-                                    color: Colors.red, fontFamily: 'Roboto'),
-                              ),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 20.0),
-
-                     
-                      const Text(
-                        "Faixa de preço",
-                        style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                            fontFamily: 'Roboto'),
-                      ),
-                      SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          activeTrackColor: Colors.red,
-                          inactiveTrackColor: Colors.grey.shade300,
-                          thumbColor: Colors.red,
-                          overlayColor: Colors.red.withOpacity(0.2),
-                          valueIndicatorColor: Colors.red,
-                        ),
-                        child: RangeSlider(
-                          values: RangeValues(minPrice, maxPrice),
-                          min: 30,
-                          max: 2030,
-                          divisions: 200,
-                          onChanged: (RangeValues values) {
-                            setState(() {
-                              minPrice = values.start;
-                              maxPrice = values.end;
-                            });
-                          },
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("R\$ ${minPrice.toInt()}"),
-                          Text("R\$ ${maxPrice.toInt()}"),
-                        ],
-                      ),
-                      const SizedBox(height: 44.0),
-
-               
-                      const Center(
-                        child: Text(
-                          "Períodos",
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Roboto',
-                              color: Colors.black),
-                        ),
-                      ),
-                      const SizedBox(height: 22.0),
-                      Center(
-                        child: Wrap(
-                          spacing: 12.0,
-                          runSpacing: 12.0,
-                          alignment: WrapAlignment.center,
-                          children: [
-                            "1 hora",
-                            "2 horas",
-                            "3 horas",
-                            "4 horas",
-                            "5 horas",
-                            "6 horas",
-                            "7 horas",
-                            "8 horas",
-                            "9 horas",
-                            "10 horas",
-                            "11 horas",
-                            "12 horas",
-                            "perda",
-                            "pernoite"
-                          ].map((item) {
-                            return ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  if (filtrosSelecionados.contains(item)) {
-                                    filtrosSelecionados.remove(item);
-                                  } else {
-                                    filtrosSelecionados.add(item);
-                                  }
-                                });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    filtrosSelecionados.contains(item)
-                                        ? Colors.red
-                                        : Colors.white,
-                                foregroundColor:
-                                    filtrosSelecionados.contains(item)
-                                        ? Colors.white
-                                        : Colors.grey,
-                                elevation: 0,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 10.0),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  side: BorderSide(
-                                    color: filtrosSelecionados.contains(item)
-                                        ? Colors.red
-                                        : Colors.grey.shade300,
-                                  ),
-                                ),
-                              ),
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                    fontSize: 14.0, fontFamily: 'Roboto'),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      const SizedBox(height: 44.0),
-
-               
-                      SwitchListTile(
-                        activeColor: Colors.red,
-                        title: const Text("Somente suítes com desconto"),
-                        value: filtrosSelecionados.contains("desconto"),
-                        onChanged: (bool value) {
-                          setState(() {
-                            if (value) {
-                              filtrosSelecionados.add("desconto");
-                            } else {
-                              filtrosSelecionados.remove("desconto");
-                            }
-                          });
-                        },
-                      ),
-                      SwitchListTile(
-                        activeColor: Colors.red,
-                        title: const Text("Somente suítes disponíveis"),
-                        value: filtrosSelecionados.contains("disponiveis"),
-                        onChanged: (bool value) {
-                          setState(() {
-                            if (value) {
-                              filtrosSelecionados.add("disponiveis");
-                            } else {
-                              filtrosSelecionados.remove("disponiveis");
-                            }
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 24.0),
-
-              
-                      const Center(
-                        child: Text(
-                          "Itens da suíte",
-                          style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(height: 12.0),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 4,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                        ),
-                        itemCount: 13,
-                        itemBuilder: (context, index) {
-                          List<String> opcoes = [
-                            "Hidro",
-                            "Piscina",
-                            "Sauna",
-                            "Ofurô",
-                            "Decoração Erótica",
-                            "Decoração Temática",
-                            "Cadeira Erótica",
-                            "Pista de Dança",
-                            "Garagem Privativa",
-                            "Frigobar",
-                            "Internet Wi-Fi",
-                            "Suíte para Festas",
-                            "Suíte com Acessibilidade"
-                          ];
-
-                          String item = opcoes[index];
-
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                if (filtrosSelecionados.contains(item)) {
-                                  filtrosSelecionados.remove(item);
-                                } else {
-                                  filtrosSelecionados.add(item);
-                                }
-                              });
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: filtrosSelecionados.contains(item)
-                                    ? Colors.red
-                                    : Colors.white,
-                                border: Border.all(
-                                  color: filtrosSelecionados.contains(item)
-                                      ? Colors.red
-                                      : Colors.grey.shade300,
-                                ),
-                              ),
-                              child: Text(
-                                item,
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: filtrosSelecionados.contains(item)
-                                      ? Colors.white
-                                      : Colors.grey,
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 24.0),
-
-         
-                      Container(
-                        width: double.infinity,
-                        margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                        child: ElevatedButton(
-                          onPressed: filtrosSelecionados.isEmpty
-                              ? null
-                              : () => Navigator.pop(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: filtrosSelecionados.isEmpty
-                                ? Colors.grey
-                                : Colors.red,
-                            padding: const EdgeInsets.symmetric(vertical: 18.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.zero),
-                          ),
-                          child: const Text("VERIFICAR DISPONIBILIDADE",
-                              style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: Colors.white,
-                                  fontSize: 16.0)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      );
-    }
-  }
+  List<String> filtrosSelecionados = [];
+  double minPrice = 30;
+  double maxPrice = 2030;
 
   @override
   Widget build(BuildContext context) {
+    final homeController = HomeController(context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 160, 24, 15),
       appBar: CustomAppBar(),
@@ -359,13 +38,11 @@ class _HomePageState extends State<HomePage> {
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                height: 40, 
-                width: MediaQuery.of(context).size.width *
-                    0.2, 
+                height: 40,
+                width: MediaQuery.of(context).size.width * 0.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius:
-                      BorderRadius.circular(20), 
+                  borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
@@ -450,10 +127,21 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 20.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: FilterBar(
-                            filtros: filtros,
-                            filtroSelecionado: filtrosSelecionados,
-                            onFilterSelected: handleFilterSelection,
+                          child: BlocBuilder<MotelBloc, MotelState>(
+                            builder: (context, state) {
+                              final List<String> filtrosSelecionados =
+                                  state is MotelLoaded
+                                      ? state.filtroSelecionado
+                                      : [];
+
+                              return FilterBar(
+                                filtros: filtros,
+                                filtroSelecionado:
+                                    filtrosSelecionados, // Agora sincronizado com o estado do BLoC
+                                onFilterSelected:
+                                    homeController.handleFilterSelection,
+                              );
+                            },
                           ),
                         ),
                         const Divider(),
@@ -469,12 +157,19 @@ class _HomePageState extends State<HomePage> {
                       ? Center(child: Text(state.message))
                       : state is MotelLoaded && state.moteis.isEmpty
                           ? const Center(
-                              child: Text(
-                                "Nenhum motel encontrado para os filtros selecionados.",
-                                style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 16.0,
-                                    color: Colors.grey),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Nenhum motel encontrado para os filtros selecionados.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 16.0,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
                               ),
                             )
                           : ListView.builder(
@@ -636,8 +331,7 @@ class _HomePageState extends State<HomePage> {
                                                                     item.icone
                                                               })
                                                           .toList(),
-                                                      suiteNome: suite
-                                                          .nome, 
+                                                      suiteNome: suite.nome,
                                                       principaisItens: suite
                                                           .itens
                                                           .map((item) =>

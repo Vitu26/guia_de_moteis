@@ -8,6 +8,7 @@ class ApiService {
 
   ApiService({this.baseUrl = 'https://jsonkeeper.com/b/1IXK'});
 
+  //faz uma requisição HTTP GET para buscar a lista de motéis da API e retorna uma List<Motel>
   Future<List<Motel>> fetchMotels() async {
     final response = await http.get(Uri.parse(baseUrl));
 
@@ -30,6 +31,8 @@ class ApiService {
   }
 }
 
+//essa classe usamos para ignorar erros de certificados SSL invalidos em requisições
+//nunca usar isso em produção
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
