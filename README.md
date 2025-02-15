@@ -1,5 +1,5 @@
 [Baixe a demonstração do app](assets/guia_de_moteis.mp4)
-[Demonstração do Guia de Motéis](assets/guia_de_moteis.gif)
+![Demonstração do Guia de Motéis](assets/guia_de_moteis.gif)
 
 # Guia de Motéis
 
