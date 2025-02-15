@@ -1,5 +1,7 @@
-[Baixe a demonstração do app](assets/guia_de_moteis.mp4)
+
 ![Demonstração do Guia de Motéis](assets/guia_de_moteis.gif)
+
+##[Baixe a demonstração do app](assets/guia_de_moteis.mp4)
 
 # Guia de Motéis
 
@@ -80,7 +82,7 @@ O projeto segue uma estrutura modular e organizada para facilitar a manutenção
 - Armazenamento de preferências do usuário.
 
 
-[Veja a demonstração do aplicativo no Google Drive](https://drive.google.com/file/d/1Bj3q2IAKRPgE_IcCncuE2uzG5bWukeXx/view?usp=sharing)
+##[Baixe a demonstração do app](assets/guia_de_moteis.mp4)[Veja a demonstração do aplicativo no Google Drive](https://drive.google.com/file/d/1Bj3q2IAKRPgE_IcCncuE2uzG5bWukeXx/view?usp=sharing)
 
 
 
